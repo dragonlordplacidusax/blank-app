@@ -88,35 +88,37 @@ with tab3:
     st.subheader("🤝 Eco-Volunteering in Dubai")
     st.write("Find and join local environmental volunteer events. *Details are based on available information and may change.*")
     
+    # Corrected dictionary without syntax errors
     opportunities = {
         'Event/Opportunity': [
-            "Sprint for Change: Ecyclex Recycling Facility"[3],
-            "Clean UAE Campaign"[7],
-            "UAE Dolphin Project Volunteering"[8],
-            "Emirates Nature-WWF Cleanups"[6],
+            "Sprint for Change: Ecyclex Recycling Facility",
+            "Clean UAE Campaign",
+            "UAE Dolphin Project Volunteering",
+            "Emirates Nature-WWF Cleanups",
         ],
         'Date(s)': [
-            "19 July 2025"[3],
-            "5-14 December 2025"[7],
-            "Ongoing"[8],
-            "Various"[6],
+            "19 July 2025",
+            "5-14 December 2025",
+            "Ongoing",
+            "Various",
         ],
         'Location': [
-            "Dubai"[3],
-            "UAE-wide"[7],
-            "UAE"[8],
-            "UAE (various sites)"[6],
+            "Dubai",
+            "UAE-wide",
+            "UAE",
+            "UAE (various sites)",
         ],
         'Contact/Details': [
-            "Visit leadersofchange.ae"[3],
-            "Register via Emirates Environmental Group"[7],
-            "Email: sighting@uaedolphinproject.org"[8],
-            "Visit emiratesnaturewwf.ae"[13],
+            "Visit leadersofchange.ae",
+            "Register via Emirates Environmental Group",
+            "Email: sighting@uaedolphinproject.org",
+            "Visit emiratesnaturewwf.ae",
         ]
     }
     df = pd.DataFrame(opportunities)
     st.table(df)
-    st.info("You can often find more opportunities on platforms like **Volunteers.ae**[2].")
+    # Corrected st.info call without invalid characters
+    st.info("You can often find more opportunities on platforms like **Volunteers.ae**.")
 
 # --- Tab 4: Sustainable Living Hub ---
 with tab4:
