@@ -1,139 +1,177 @@
 # app.py
 
 import streamlit as st
+import pandas as pd
 
 # --- App Configuration ---
 st.set_page_config(
-    page_title="Climate Action AI: Your Guide to a Greener Planet",
-    page_icon="🌱",
-    layout="wide"
+    page_title="Climate Action AI | Your Guide to a Greener Planet",
+    page_icon="🌍",
+    layout="centered"
 )
 
-# --- Header ---
-st.title("Climate Action AI 🌱")
+# --- Custom CSS for subtle enhancements ---
 st.markdown("""
-Welcome to your personal guide for making a tangible, positive impact on the environment. 
-This app uses the power of AI and community to help you take meaningful steps towards a sustainable future.
-""")
+<style>
+    .stApp {
+        background-color: #F7F7F7;
+    }
+    h1 {
+        color: #1a1a1a;
+        font-weight: 700;
+        text-align: center;
+    }
+    h2 {
+        color: #333333;
+    }
+</style>
+""", unsafe_allow_html=True)
+
+# --- Header ---
+st.title("Climate Action AI 🌍")
+st.markdown("<p style='text-align: center; color: #555;'>Your personal guide to making a tangible, positive impact on the environment.</p>", unsafe_allow_html=True)
+st.divider()
 
 # --- Main Tabs ---
 tab1, tab2, tab3, tab4 = st.tabs([
-    "AI for Climate Action", 
-    "Eco-Scanner",
-    "Local Climate Action Hub",
-    "Collective Challenges"
+    "💡 AI for Climate Action", 
+    "📸 Eco-Scanner",
+    "🏘️ Local Action Hub",
+    "📚 Sustainable Living Hub"
 ])
 
-# --- Feature Tabs ---
-
-# Tab 1: AI for Climate Action
+# --- Tab 1: AI for Climate Action (Unchanged) ---
 with tab1:
-    st.header("How AI is Fueling Climate Solutions")
-    st.markdown("""
-    Artificial Intelligence is a powerful tool in the fight against climate change. It helps us understand complex environmental systems, accelerate innovation, and build resilience.
-    """)
+    st.header("How AI Fuels Climate Solutions")
+    st.write("Artificial Intelligence is a powerful tool in fighting climate change. It helps us understand complex systems, accelerate innovation, and build resilience.")
     
-    col1, col2 = st.columns(2)
-    
-    with col1:
+    with st.container(border=True):
         st.subheader("Optimizing Global Systems")
         st.write("""
-        - **Energy Grids:** AI improves grid stability by forecasting power demand and optimizing the deployment of renewables like solar and wind.
-        - **Transportation:** AI-powered route planning reduces fuel consumption and emissions.
-        - **Smart Agriculture:** AI helps optimize irrigation and reduce fertilizer use, lowering the carbon footprint of our food supply.
+        - **Energy Grids:** AI improves grid stability by forecasting power demand.
+        - **Transportation:** AI-powered route planning reduces fuel consumption.
+        - **Smart Agriculture:** AI helps optimize irrigation and reduce fertilizer use.
         """)
+    
+    st.write("") 
 
-    with col2:
+    with st.container(border=True):
         st.subheader("Accelerating Discovery & Resilience")
         st.write("""
-        - **Innovation:** AI is used to discover new, sustainable materials and technologies required to meet net-zero goals.
-        - **Early Warnings:** AI models process satellite imagery and sensor data to predict extreme weather events, enabling proactive disaster management.
-        - **Conservation:** AI analyzes drone and satellite imagery to monitor deforestation and protect endangered species.
+        - **Innovation:** AI is used to discover new, sustainable materials for net-zero goals.
+        - **Early Warnings:** AI models predict extreme weather events for better disaster management.
+        - **Conservation:** AI analyzes satellite imagery to monitor deforestation.
         """)
 
-# Tab 2: Eco-Scanner
+# --- Tab 2: Eco-Scanner (with Enhanced Food Waste Assistant) ---
 with tab2:
-    st.header("Eco-Scanner: AI-Powered Environmental Insights")
-    st.markdown("""
-    Use your camera or upload images to get instant sustainability insights about products, bills, and food waste. *Note: This is a conceptual demo.*
-    """)
+    st.header("Eco-Scanner: AI-Powered Insights")
+    st.write("Use your camera to get instant sustainability insights. *Note: This is a conceptual demo.*")
+
+    with st.container(border=True):
+        st.subheader("🍎 Food Waste Assistant")
+        st.write("Get comprehensive recipe ideas to use up leftover food items and reduce waste.")
+        food_item = st.text_input("Enter a food item (e.g., 'carrots', 'chicken', 'bread'):", key="food_assistant")
+        
+        if food_item.lower() == 'carrots':
+            st.success("Recipe Idea: **Quick Carrot & Ginger Soup**")
+            st.write("""
+            - **Ingredients:** Leftover carrots, 1 onion, 1-inch piece of ginger, vegetable broth, olive oil.
+            - **Method:** Sauté chopped onion and grated ginger in oil. Add chopped carrots and cover with broth. Simmer until carrots are soft, then blend until smooth. Season with salt and pepper.
+            """)
+        elif food_item.lower() == 'chicken':
+            st.success("Recipe Idea: **Leftover Chicken Salad Sandwich**")
+            st.write("""
+            - **Ingredients:** Cooked chicken (shredded), mayonnaise or Greek yogurt, celery (chopped), salt, pepper, bread.
+            - **Method:** Mix shredded chicken with mayo/yogurt and chopped celery. Season to taste. Serve on bread or with crackers.
+            """)
+        elif food_item.lower() == 'bread':
+            st.success("Recipe Idea: **Simple Bread Pudding**")
+            st.write("""
+            - **Ingredients:** Stale bread (cubed), 2 eggs, 1 cup milk, 1/4 cup sugar, vanilla extract, cinnamon.
+            - **Method:** Whisk eggs, milk, sugar, and vanilla. Pour over bread cubes in a baking dish. Sprinkle with cinnamon. Bake at 180°C (350°F) for 30-40 minutes until set.
+            """)
+        elif food_item:
+            st.info(f"No specific recipe for '{food_item}' yet, but consider adding it to a general stir-fry, soup, or omelette!")
+
+    st.write("")
     
-    st.subheader("Product and Barcode Scanning")
-    st.write("Simulate scanning a product barcode to get a sustainability score and eco-friendly alternatives.")
-    barcode = st.text_input("Enter a product barcode to simulate scanning:")
-    if barcode:
-        st.success(f"Product Score (Barcode: {barcode}): **72/100**")
-        st.info("Eco-Friendly Alternatives: Consider a brand with recyclable packaging or a concentrated refill option.")
+    with st.container(border=True):
+        st.subheader("📦 Product & Barcode Scanner")
+        st.write("Scan a product's barcode to get a sustainability score.")
+        barcode = st.text_input("Enter a product barcode:", key="barcode_scanner")
+        if barcode:
+            st.success(f"**Product Score (Barcode: {barcode}): 72/100**")
+            st.info("Tip: Consider brands with fully recyclable packaging or refill options.")
 
-    st.subheader("Utility Bill Analyzer")
-    uploaded_bill = st.file_uploader("Upload a photo of your utility bill", type=["png", "jpg", "jpeg"])
-    if uploaded_bill:
-        st.success("Bill uploaded successfully!")
-        st.write("Analyzing your usage patterns...")
-        st.warning("**Analysis Result:** Your electricity usage is 15% higher than similar homes in your area. Consider unplugging devices on standby to reduce phantom load.")
-
-    st.subheader("Food Waste Assistant")
-    food_item = st.text_input("Enter a food item you need to use up (e.g., 'carrots', 'chicken'):")
-    if food_item:
-        st.success(f"Here are some recipe ideas to use your {food_item}:")
-        st.write(f"- Roasted {food_item} with herbs\n- {food_item} and ginger soup\n- Shredded {food_item} salad")
-
-# Tab 3: Local Climate Action Hub
+# --- Tab 3: Local Action Hub (with Volunteering Opportunities) ---
 with tab3:
-    st.header("Hyper-Local Climate Action Hub")
-    st.markdown("""
-    Find local recycling centers, volunteer events, and advocacy tools to make a difference in your community.
-    """)
-    
-    st.subheader("Interactive Action Map")
-    st.write("This map would show local sustainable services. Below is a simulated list for demonstration:")
-    
-    # In a real app, this would be an interactive map using st.map()
-    locations = [
-        "**Recycling Center:** 123 Green Way, open M-F 9am-5pm",
-        "**Compost Drop-off:** City Park, near the main entrance (Saturdays only)",
-        "**Farmers' Market:** Town Square, Sundays 8am-1pm"
-    ]
-    for loc in locations:
-        st.info(loc)
+    st.header("Hyper-Local Climate Action")
+    st.write("Find local centers, volunteer events, and advocacy tools to make a difference in your community.")
 
-    st.subheader("Community Project Connector")
-    st.write("Find and join local volunteer events:")
-    events = ["Tree Planting Day: July 20th", "Park Clean-up Crew: August 5th", "Community Garden Workshop: August 15th"]
-    for event in events:
-        st.checkbox(event, key=event)
+    with st.container(border=True):
+        st.subheader("🤝 Eco-Volunteering in Dubai")
+        st.write("Find and join local environmental volunteer events. *Details are based on available information and may change.*")
+        
+        opportunities = {
+            'Event/Opportunity': [
+                "Sprint for Change: Ecyclex Recycling Facility"[3],
+                "Clean UAE Campaign"[7],
+                "UAE Dolphin Project Volunteering"[8],
+                "Emirates Nature-WWF Cleanups"[6],
+            ],
+            'Date(s)': [
+                "19 July 2025"[3],
+                "5-14 December 2025"[7],
+                "Ongoing"[8],
+                "Various"[6],
+            ],
+            'Location': [
+                "Dubai"[3],
+                "UAE-wide"[7],
+                "UAE"[8],
+                "UAE (various sites)"[6],
+            ],
+            'Contact/Details': [
+                "Visit leadersofchange.ae"[3],
+                "Register via Emirates Environmental Group"[7],
+                "Email: sighting@uaedolphinproject.org"[8],
+                "Visit emiratesnaturewwf.ae"[13],
+            ]
+        }
+        df = pd.DataFrame(opportunities)
+        st.table(df)
+        st.info("You can often find more opportunities on platforms like **Volunteers.ae**[2].")
 
-    st.subheader("Local Policy Advocacy")
-    st.write("Use this template to write to local representatives about important climate issues.")
-    letter = st.text_area("Draft your letter:", "Dear Representative,\n\nI am writing to urge you to support stronger local policies for renewable energy and waste reduction. Our community's future depends on it.\n\nSincerely,\nA Concerned Citizen")
-    if st.button("Send Letter (Simulated)"):
-        st.success("Thank you for your advocacy! Your letter has been sent.")
-
-# Tab 4: Collective Challenges
+# --- Tab 4: Sustainable Living Hub (New Page) ---
 with tab4:
-    st.header("Collective Climate Challenges")
-    st.markdown("""
-    Join with friends, participate in challenges, and track your collective impact on climate action.
-    """)
-    
-    st.subheader("Team-Based Goals")
-    team_name = st.text_input("Create or join a team:")
-    if team_name:
-        st.write(f"Welcome, **{team_name}**!")
-        challenge = st.selectbox("Current Challenge:", ["Plastic-Free July", "Bike-to-Work Month", "Meatless Mondays"])
-        progress_val = st.slider(f"Log your team's '{challenge}' progress:", 0, 100, 25)
-        st.write(f"Your team has completed **{progress_val}%** of the '{challenge}' goal!")
+    st.header("Sustainable Living Hub")
+    st.write("Practical guides and information to help you adopt a more sustainable lifestyle.")
 
-    st.subheader("Community Milestones")
-    st.write("City-Wide Goal: **Plant 10,000 Trees**")
-    # This value would update in real-time in a live app
-    st.progress(67, text="6,700 / 10,000 trees planted")
-    
-    st.subheader("Augmented Reality (AR) Visualization")
-    st.write("Visualize the impact of our collective actions!")
-    if st.button("See Our Forest Grow (AR Simulation)"):
-        st.success("Imagine pointing your phone at a local park and seeing a virtual forest representing all the trees we've planted together!")
-        st.image("https://i.imgur.com/8FPomi5.png", caption="This AR feature would show the virtual trees your actions helped plant.")
+    with st.container(border=True):
+        st.subheader("♻️ How to Set Up a Home Recycling System")
+        st.write("""
+        1.  **Check Local Rules:** Find out what materials your local municipality collects for recycling.
+        2.  **Designate a Spot:** Choose a convenient location, like the kitchen or garage, for your recycling bins.
+        3.  **Use Clear Bins:** Use separate, clearly labeled bins for different materials (e.g., paper, plastic/metal, glass).
+        4.  **Clean & Dry:** Rinse food containers and let them dry before placing them in the bin to avoid contamination.
+        5.  **Know What to Exclude:** Keep non-recyclable items like plastic bags, food waste, and electronics out of your recycling bins.
+        """)
+
+    st.write("")
+
+    with st.container(border=True):
+        st.subheader("👣 Understanding Your Carbon Footprint")
+        st.write("""
+        Your carbon footprint is the total amount of greenhouse gases (including carbon dioxide and methane) generated by your actions.
+        - **Primary Footprint:** Direct emissions from energy consumption (e.g., electricity, transportation).
+        - **Secondary Footprint:** Indirect emissions from the lifecycle of products you use.
+        
+        **To reduce it, focus on:**
+        - **Energy:** Use energy-efficient appliances and reduce heating/cooling.
+        - **Transport:** Walk, cycle, or use public transport instead of driving.
+        - **Diet:** Reduce consumption of red meat, as it has a high carbon footprint.
+        """)
 
 # --- Footer ---
 st.sidebar.header("About Climate Action AI")
