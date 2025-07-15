@@ -6,19 +6,26 @@ import pandas as pd
 # --- App Configuration ---
 # The default theme will be used, which respects system settings (including dark mode).
 st.set_page_config(
-    page_title="Climate Action AI | Your Guide to a Greener Planet",
+    page_title="Project Evergreen | Your Guide to a Greener Planet",
     page_icon="🌍",
     layout="centered"
 )
 
 # --- Header ---
-st.title("Climate Action AI 🌍")
-st.markdown("Your personal guide to making a tangible, positive impact on the environment.")
+st.title("Project Evergreen 🌍")
+st.subheader("AI for a Greener Tomorrow.")
+
+st.markdown("""
+**Project Evergreen** is a pioneering AI initiative dedicated to fostering a sustainable and resilient future. 
+By harnessing the power of artificial intelligence, we translate complex climate data into clear, actionable insights for businesses, communities, and policymakers. 
+
+Our mission is to cultivate a world that remains vibrant and thriving for generations to come, ensuring a green and prosperous planet for all.
+""")
 st.divider()
 
 # --- Main Tabs ---
 tab1, tab2, tab3, tab4 = st.tabs([
-    "💡 AI for Climate Action", 
+    "💡 AI for a Greener Future", 
     "📸 Eco-Scanner",
     "🏘️ Local Action Hub",
     "📚 Sustainable Living Hub"
