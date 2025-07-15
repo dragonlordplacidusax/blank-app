@@ -152,9 +152,3 @@ with tab4:
     - **Transport:** Walk, cycle, or use public transport instead of driving.
     - **Diet:** Reduce consumption of red meat, as it has a high carbon footprint.
     """)
-
-# --- Footer ---
-st.sidebar.header("About Climate Action AI")
-st.sidebar.info("""
-This app is a concept designed to empower individuals and communities to take meaningful climate action. By providing personalized insights and fostering local connections, we can build a more sustainable future together.
-""")
